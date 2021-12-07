@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <!-- We only include this to explicitly loosen the CSP of various packager environments. It does not provide any security. -->
   <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: blob:">
-  <title>CloudTextTest</title>
+  <title>DELTAWARP Chatroom Experiment</title>
   <style>
     body {
       color: #ffffff;
@@ -112,10 +112,10 @@
       border-radius: 4px;
     }
     .control-button:hover {
-      background: #ff4c4c26;
+      background: #ffa20026;
     }
     .control-button.active {
-      background: #ff4c4c59;
+      background: #ffa20059;
     }
     .fullscreen-button {
       background: white !important;
@@ -194,7 +194,7 @@
       setProgress(0.1);
 
       const scaffolding = new Scaffolding.Scaffolding();
-      scaffolding.width = 480;
+      scaffolding.width = 640;
       scaffolding.height = 360;
       scaffolding.resizeMode = "preserve-ratio";
       scaffolding.editableLists = false;
@@ -206,17 +206,17 @@
       const vm = scaffolding.vm;
 
       scaffolding.setUsername("player####".replace(/#/g, () => Math.floor(Math.random() * 10)));
-      scaffolding.setAccentColor("#ff4c4c");
+      scaffolding.setAccentColor("#ffa200");
 
       scaffolding.addCloudProvider(new Scaffolding.Cloud.WebSocketProvider("wss://clouddata.turbowarp.org", "p4-@CloudTextTest.sb3"));
 
-      vm.setTurboMode(false);
+      vm.setTurboMode(true);
       if (vm.setInterpolation) vm.setInterpolation(false);
-      if (vm.setFramerate) vm.setFramerate(30);
+      if (vm.setFramerate) vm.setFramerate(60);
       if (vm.renderer.setUseHighQualityRender) vm.renderer.setUseHighQualityRender(false);
       if (vm.setRuntimeOptions) vm.setRuntimeOptions({
-        fencing: true,
-        miscLimits: true,
+        fencing: false,
+        miscLimits: false,
         maxClones: 300,
       });
       if (vm.setCompilerOptions) vm.setCompilerOptions({
@@ -278,7 +278,7 @@
       await scaffolding.loadProject(projectData);
       setProgress(1);
       loadingScreen.hidden = true;
-      if (false) {
+      if (true) {
         scaffolding.start();
       } else {
         launchScreen.hidden = false;
